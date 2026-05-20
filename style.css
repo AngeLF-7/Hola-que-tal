@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-casa: #fdfaf6;        /* Arena clara de patio interior */
+  --azul-majorelle: #1c3b57;   /* Azul profundo marroquí */
+  --terracota: #d97d66;      /* Arcilla/atardecer suave */
+  --oro: #d4a359;            /* Dorado de lámparas y fuentes */
+  --esmeralda: #346b50;      /* Verde de azulejos tradicionales */
+  --texto: #2b1f1d;
+}
+
+body {
+  background-color: var(--bg-casa);
+  /* Patrón geométrico sutil que imita papel tapiz o azulejo vintage árabe */
+  background-image: radial-gradient(var(--oro) 0.4px, transparent 0.4px), radial-gradient(var(--oro) 0.4px, var(--bg-casa) 0.4px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  opacity: 0.98;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: var(--texto);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Marco decorativo de casa árabe en los bordes de la pantalla */
+body::before {
+  content: '';
+  position: fixed;
+  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 2px solid var(--oro);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* --- ANIMACIONES SUAVES --- */
+.fade-in {
+  animation: fadeInSlow 1.2s ease forwards;
+}
+@keyframes fadeInSlow {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ENCABEZADOS Y NAVEGACIÓN --- */
+header {
+  text-align: center;
+  padding: 2.5rem 1rem 1rem;
+}
+.riad-title {
+  font-family: 'Amiri', serif;
+  font-size: 2.8rem;
+  color: var(--azul-majorelle);
+  text-shadow: 1px 1px rgba(212, 163, 89, 0.3);
+}
+.riad-subtitle {
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terracota);
+  font-style: italic;
+  margin-top: 0.4rem;
+}
+
+/* Menú de Botones Principal */
+nav.menu-navegacion {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem auto 3rem;
+  max-width: 800px;
+  flex-wrap: wrap;
+}
+.nav-btn {
+  text-decoration: none;
+  background: white;
+  border: 1.5px solid var(--azul-majorelle);
+  padding: 0.6rem 1.4rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--azul-majorelle);
+  border-radius: 4px;
+  box-shadow: 3px 3px 0px var(--oro);
+  transition: all 0.3s ease;
+}
+.nav-btn:hover, .nav-btn.active {
+  background: var(--azul-majorelle);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px var(--terracota);
+}
+
+.container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+/* Separadores árabes */
+.divider {
+  display: flex; align-items: center; gap: 0.8rem; margin: 2rem 0;
+}
+.divider-line {
+  flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--oro), transparent);
+}
+.divider-gem {
+  width: 10px; height: 10px; background: var(--terracota); transform: rotate(45deg);
+}
+
+/* =========================================
+   PANTALLA DE LOGIN (index.html)
+   ========================================= */
+.lock-card {
+  background: white;
+  max-width: 450px;
+  margin: 10vh auto;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--oro);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.lock-card input {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 1.5rem 0 1rem;
+  border: 1px solid var(--oro);
+  border-radius: 4px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: var(--bg-casa);
+}
+.lock-card button {
+  background: var(--azul-majorelle);
+  color: white;
+  border: none;
+  padding: 0.7rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.lock-card button:hover { background: var(--terracota); }
+.modal-alert {
+  display: none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 2px solid var(--oro);
+  padding: 2rem;
+  z-index: 2000;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  text-align: center;
+  max-width: 90%;
+}
+
+/* =========================================
+   3. SECCIÓN NOSOTROS (TIMELINE)
+   ========================================= */
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  padding-left: 2rem;
+  border-left: 2px solid var(--oro);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+}
+.timeline-item::before {
+  content: '✦';
+  position: absolute;
+  left: calc(-2rem - 7px);
+  top: 0;
+  background: var(--bg-casa);
+  color: var(--terracota);
+  font-size: 1rem;
+  width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.timeline-date {
+  font-family: 'Amiri', serif;
+  color: var(--terracota);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.timeline-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(212, 163, 89, 0.3);
+  margin-top: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+/* Cierre Emocional */
+.cierre-box {
+  background: rgba(212, 163, 89, 0.08);
+  border: 1px dashed var(--oro);
+  padding: 2.5rem;
+  text-align: center;
+  margin-top: 4rem;
+  border-radius: 4px;
+}
+.cierre-text {
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--azul-majorelle);
+}
+
+/* =========================================
+   4. SECCIÓN RECUERDOS (HOVER EFECTO)
+   ========================================= */
+.grid-recuerdos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+.recuerdo-card {
+  position: relative;
+  background: white;
+  padding: 10px 10px 10px 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.04);
+  overflow: hidden;
+  height: 320px;
+}
+.recuerdo-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.recuerdo-hover {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(28, 59, 87, 0.9); /* Fondo azul Majorelle con transparencia */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+.recuerdo-card:hover .recuerdo-hover {
+  opacity: 1;
+}
+
+/* =========================================
+   5. SECCIÓN MENSAJES (CARTAS INTERACTIVAS)
+   ========================================= */
+.grid-cartas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
+  padding-top: 1rem;
+}
+.carta-item-container {
+  text-align: center;
+}
+.carta-hint {
+  font-size: 1rem;
+  color: var(--terracota);
+  margin-bottom: 0.6rem;
+  font-style: italic;
+  font-weight: 600;
+}
+.mini-sobre {
+  position: relative;
+  width: 100%; height: 150px;
+  background: var(--terracota);
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.mini-sobre::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 0; height: 0;
+  border-left: 120px solid transparent; border-right: 120px solid transparent;
+  border-top: 80px solid #bd644f; transform-origin: top; transition: transform 0.4s; z-index: 5;
+}
+/* Al abrir cambian las propiedades */
+.mini-sobre.open::before { transform: rotateX(180deg); z-index: 1; border-top-color: var(--terracota); }
+.mini-lacre {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 35px; height: 35px; background: var(--oro); border-radius: 50%;
+  z-index: 10; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem;
+}
+.mini-sobre.open .mini-lacre { opacity: 0; }
+.mini-papel {
+  position: absolute; top: 5px; left: 10px; right: 10px; bottom: 5px;
+  background: #fffdfa; border: 1px solid var(--oro); padding: 1rem;
+  transition: transform 0.5s ease, height 0.5s ease; z-index: 2; border-radius: 4px;
+  height: 130px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.mini-texto { font-size: 0.95rem; line-height: 1.5; color: #333; opacity: 0; transition: opacity 0.3s; font-style: italic; text-align: left; }
+.mini-sobre.open .mini-papel {
+  transform: translateY(-100px);
+  height: 240px;
+  z-index: 12;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  overflow-y: auto;
+}
+.mini-sobre.open .mini-texto { opacity: 1; transition-delay: 0.3s; }
+
+/* =========================================
+   6. SECCIÓN LO QUE ERES (CORAZÓN GALLERY)
+   ========================================= */
+.corazon-wrapper {
+  position: relative;
+  width: 100%;
+  height: 550px;
+  margin: 3rem auto 0;
+}
+.foto-corazon {
+  position: absolute;
+  background: white;
+  padding: 6px 6px 18px 6px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.3s, z-index 0.1s;
+}
+.foto-corazon img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.foto-corazon:hover {
+  transform: scale(1.15) rotate(0deg) !important;
+  z-index: 50;
+}
+
+/* Posiciones absolutas calculadas matemáticamente para dar forma al corazón */
+.fc-1 { width: 90px; height: 90px; top: 15%; left: 32%; transform: rotate(-5deg); }
+.fc-2 { width: 110px; height: 110px; top: 8%; left: 42%; transform: rotate(4deg); }
+.fc-3 { width: 90px; height: 90px; top: 15%; left: 56%; transform: rotate(-3deg); }
+.fc-4 { width: 120px; height: 120px; top: 25%; left: 22%; transform: rotate(6deg); }
+.fc-5 { width: 130px; height: 130px; top: 24%; left: 38%; transform: rotate(-4deg); }
+.fc-6 { width: 120px; height: 120px; top: 25%; left: 58%; transform: rotate(2deg); }
+.fc-7 { width: 100px; height: 100px; top: 40%; left: 28%; transform: rotate(-6deg); }
+.fc-8 { width: 110px; height: 110px; top: 42%; left: 48%; transform: rotate(5deg); }
+.fc-9 { width: 100px; height: 100px; top: 38%; left: 66%; transform: rotate(-2deg); }
+.fc-10 { width: 110px; height: 110px; top: 56%; left: 36%; transform: rotate(3deg); }
+.fc-11 { width: 95px; height: 95px; top: 54%; left: 54%; transform: rotate(-5deg); }
+.fc-12 { width: 100px; height: 100px; top: 72%; left: 44%; transform: rotate(1deg); }
+
+@media (max-width: 768px) {
+  .corazon-wrapper { height: auto; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+  .foto-corazon { position: relative; top: auto !important; left: auto !important; width: 130px; height: 130px; transform: none !important; }
+}
