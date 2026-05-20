@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mensajes para ti</title>
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+  <header>
+    <div class="riad-title">Mensajes para ti</div>
+    <div class="riad-subtitle">Pequeñas cartas que explican sentimientos</div>
+  </header>
+
+  <nav class="menu-navegacion">
+    <a href="menu.html" class="nav-btn">Inicio</a>
+    <a href="nosotros.html" class="nav-btn">Nosotros</a>
+    <a href="recuerdos.html" class="nav-btn">Recuerdos</a>
+    <a href="mensajes.html" class="nav-btn active">Mensajes</a>
+    <a href="lo-que-eres.html" class="nav-btn">Mi Corazón</a>
+  </nav>
+
+  <div class="container fade-in">
+    <div class="grid-cartas">
+      
+      <div class="carta-item-container">
+        <div class="carta-hint">Perdón</div>
+        <div class="mini-sobre" onclick="toggleCarta(this)">
+          <div class="mini-lacre">✦</div>
+          <div class="mini-papel">
+            <div class="mini-texto">
+              Quiero pedirte perdón por a veces no saber gestionarme y pagarlo contigo, intento mejorar esto cada día para que puedas tener un hombre a tu lado que sea fuerte y maduro, quiero ser un ejemplo a seguir para nuestros futuros hijos y que la gente te envidie por tenerme a tu lado, no voy a para de mejorar hasta ser el hombre perfecto y sabes que eso es imposible, te pido perdón por los daños fututos que pueda generar, pero que sepas que siempre voy a mejorarlos para no perderte nunca.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carta-item-container">
+        <div class="carta-hint">Eres suficiente</div>
+        <div class="mini-sobre" onclick="toggleCarta(this)">
+          <div class="mini-lacre">✦</div>
+          <div class="mini-papel">
+            <div class="mini-texto">
+              Siento si a veces no te hago sentir suficiente, pero la verdad es que me das mucho más de lo que puedes darme y dice mucho de tí que en situaciones de máximo estrés seas capaz de sacar un ratito para mí y alegrarme el día. Eres una persona maravillosa y no voy a permitir que sientas que no me das lo que necesito porque cuando lo pienso de verdad me doy cuenta de lo afortunado que soy de tenerte a mi lado.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carta-item-container">
+        <div class="carta-hint">Mi vida junto a ti</div>
+        <div class="mini-sobre" onclick="toggleCarta(this)">
+          <div class="mini-lacre">✦</div>
+          <div class="mini-papel">
+            <div class="mini-texto">
+              Mi motivación en la vida es mi futuro contigo, todo lo que pienso y mejoro es para ti, quiero q tengas una vida llena de lujillos y poder permitirte todo lo que me pidas y voy a luchar por darte tú vida ideal. Si para eso tengo que sacrificar una prenda de ropa o un juego, me da igual porque, no se como explicarlo pero tu sonrisa es mejor que culaquier capricho del mundo.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carta-item-container">
+        <div class="carta-hint">Como me haces sentir</div>
+        <div class="mini-sobre" onclick="toggleCarta(this)">
+          <div class="mini-lacre">✦</div>
+          <div class="mini-papel">
+            <div class="mini-texto">
+              La verdad es que contigo siento algo en el pecho q no se puede explicar, me tratas muy bien y haces que mi niño interior este agusto contigo, eres una persona maravillosa que se que daría la vida por mi, aunque a veces me ponga celoso me das mucha seguridad y además se que nunca me vas a mentir, así que si tengo que decirte como me haces sentir diría, comodo, amado, seguro, respetado, deseado, comprendido y como siga así no termino.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+    </div>
+  </div>
+
+  <script>
+    function toggleCarta(elementoSobre) {
+      elementoSobre.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

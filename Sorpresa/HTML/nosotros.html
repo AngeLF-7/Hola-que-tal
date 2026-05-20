@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros - Una Carta Para Ti</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: #fdfaf6; /* Tono arena claro vintage */
+    background-image: radial-gradient(#c4813a 0.4px, transparent 0.4px), radial-gradient(#c4813a 0.4px, #fdfaf6 0.4px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: #2a1a0e;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+  }
+
+  /* Marco perimetral fino que evoca manuscritos antiguos */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    border: 1px solid #c4813a;
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  .scroll-container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 3rem;
+    position: relative;
+    background: rgba(253, 250, 246, 0.96); /* Asegura legibilidad sobre el fondo */
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(42, 26, 14, 0.04);
+  }
+
+  /* Arabesque border decorativo SVG arriba y abajo */
+  .arabesque-top, .arabesque-bottom {
+    width: 100%;
+    text-align: center;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .arabesque-top svg, .arabesque-bottom svg {
+    opacity: 0.7;
+    width: min(420px, 100%);
+  }
+
+  .title-block {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .arabic-ornament {
+    font-family: 'Amiri', serif;
+    font-size: 2.2rem;
+    color: #8b4513;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .main-title {
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: #5c1e0a;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    font-style: italic;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #8b5a3a;
+    margin-top: 0.4rem;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* Menú de navegación exacto y estilizado */
+  nav.menu-navegacion {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: 2rem auto 2.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .nav-btn {
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid #c4813a;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    color: #2a1a0e;
+    transition: all 0.4s ease;
+    font-style: italic;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: #5c1e0a;
+    color: #fdfaf6;
+    border-color: #5c1e0a;
+  }
+
+  /* Separador tipo mosaico árabe */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 2rem 0;
+  }
+  .divider-line {
+    flex: 1;
+    height: 0.5px;
+    background: linear-gradient(to right, transparent, #c4813a, transparent);
+  }
+  .divider-gem {
+    width: 8px; height: 8px;
+    background: #c4813a;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* El pergamino del PDF en el centro */
+  .carta-pergamino {
+    border: 0.5px solid #d4a06a;
+    border-radius: 2px;
+    padding: 2.5rem 2rem;
+    margin: 2rem 0;
+    position: relative;
+    background: rgba(255, 245, 230, 0.25);
+  }
+
+  .carta-pergamino::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    border: 0.5px solid rgba(196, 129, 58, 0.25);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  .carta-destinatario {
+    font-family: 'Amiri', serif;
+    font-size: 1.4rem;
+    color: #8b5a3a;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .carta-contenido p {
+    font-size: 1.15rem;
+    color: #3a2214;
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  /* Cita final con el cierre emocional */
+  .closing-quote {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.8rem 2rem;
+    border-top: 0.5px solid #d4a06a;
+    border-bottom: 0.5px solid #d4a06a;
+    position: relative;
+  }
+  
+  .closing-quote::before {
+    content: '✦';
+    position: absolute;
+    color: #c4813a;
+    font-size: 0.8rem;
+    top: -0.45rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fdfaf6;
+    padding: 0 0.4rem;
+  }
+
+  .quote-text {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #5c1e0a;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  
+  .quote-sub {
+    font-size: 0.85rem;
+    color: #8b5a3a;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+    display: block;
+    font-style: normal;
+  }
+
+  .firma-block {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .firma-nombre {
+    font-family: 'Amiri', serif;
+    font-size: 1.35rem;
+    color: #5c1e0a;
+    display: block;
+  }
+
+  .firma-dedicatoria {
+    font-size: 0.9rem;
+    color: #c4813a;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Adaptación modo oscuro respetando la estética */
+  @media (prefers-color-scheme: dark) {
+    body { background-color: #1a1108; color: #e8d5c0; }
+    body::after { border-color: #8a6040; }
+    .scroll-container { background: rgba(26, 17, 8, 0.96); }
+    .main-title { color: #e8b080; }
+    .subtitle { color: #c49060; }
+    .nav-btn { color: #e8d5c0; border-color: #8a6040; }
+    .nav-btn:hover, .nav-btn.active { background: #e8b080; color: #1a1108; border-color: #e8b080; }
+    .divider-line { background: linear-gradient(to right, transparent, #8a6040, transparent); }
+    .divider-gem { background: #8a6040; }
+    .carta-pergamino { background: rgba(255, 230, 180, 0.03); border-color: #8a6a40; }
+    .carta-pergamino::before { border-color: rgba(196, 129, 58, 0.15); }
+    .carta-contenido p { color: #d8c5b0; }
+    .closing-quote { border-color: #8a6040; }
+    .closing-quote::before { background: #1a1108; }
+    .quote-text { color: #e8c0a0; }
+    .quote-sub { color: #a08060; }
+    .firma-nombre { color: #e8b080; }
+  }
+</style>
+</head>
+<body>
+<div class="scroll-container">
+
+  <div class="arabesque-top">
+    <svg viewBox="0 0 420 40" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <g stroke="#c4813a" stroke-width="0.8" opacity="0.8">
+        <line x1="10" y1="20" x2="410" y2="20"/>
+        <polygon points="210,10 220,20 210,30 200,20" fill="#c4813a" opacity="0.5"/>
+        <polygon points="210,14 218,20 210,26 202,20" fill="none" stroke="#c4813a"/>
+        <polygon points="140,15 148,20 140,25 132,20" fill="none"/>
+        <polygon points="80,15 88,20 80,25 72,20" fill="none"/>
+        <polygon points="280,15 288,20 280,25 272,20" fill="none"/>
+        <polygon points="340,15 348,20 340,25 332,20" fill="none"/>
+        <path d="M10,20 Q30,8 50,20" stroke-width="0.6"/>
+        <path d="M370,20 Q390,8 410,20" stroke-width="0.6"/>
+        <path d="M50,20 Q70,32 90,20" stroke-width="0.6"/>
+        <path d="M330,20 Q350,32 370,20" stroke-width="0.6"/>
+        <path d="M90,20 Q110,8 130,20" stroke-width="0.6"/>
+        <path d="M290,20 Q310,8 330,20" stroke-width="0.6"/>
+        <circle cx="140" cy="20" r="2" fill="#c4813a" opacity="0.6"/>
+        <circle cx="280" cy="20" r="2" fill="#c4813a" opacity="0.6"/>
+        <circle cx="80" cy="20" r="1.5" fill="#c4813a" opacity="0.4"/>
+        <circle cx="340" cy="20" r="1.5" fill="#c4813a" opacity="0.4"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="title-block">
+    <span class="arabic-ornament">معًا إلى الأبد</span>
+    <h1 class="main-title">Carta de amor</h1>
+  </div>
+
+  <nav class="menu-navegacion">
+    <a href="menu.html" class="nav-btn">Inicio</a>
+    <a href="nosotros.html" class="nav-btn active">Nosotros</a>
+    <a href="recuerdos.html" class="nav-btn">Recuerdos</a>
+    <a href="mensajes.html" class="nav-btn">Mensajes</a>
+    <a href="lo-que-eres.html" class="nav-btn">Mi Corazón</a>
+  </nav>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+  <article class="carta-pergamino">
+    <div class="carta-destinatario">Para Alba</div>
+    
+    <div class="carta-contenido">
+      <p>
+        Espero que te guste esta página que he hecho con tanto amor para ti. En esta carta voy a decirte todo el progreso que has hecho este año, para poder hacerte ver valorada y también para que tú misma seas consciente. 
+      </p>
+      
+      <p>
+        Este año ha sido muy complicado; has tenido que superar muchos obstáculos, pero has podido lidiar con los profesores y con las cantidades de estudio que te metías, y aunque tuvieses todos los problemas del mundo, siempre sacabas una sonrisa y ayudabas a los demás. Siempre he estado enamorado de esa Alba que es incapaz de no ayudar a la gente de su alrededor.
+      </p>
+      
+      <p>
+        Has dado un salto de madurez grandísimo, en el que ya incluso esa vida de parque, porros y alcohol llega a molestarte, y siempre vas pensando en el futuro y en la vida que quieres tener para motivarte. Has estado en épocas de mucha ansiedad, has tenido que soportar de todo, y no te has rendido. 
+      </p>
+      
+      <p>
+        Has estado echándole y echándole horas al curso para sacártelo, y en paralelo llevabas nuestra relación y la relación con tu familia. Yo siempre he confiado en ti; sabía que ibas a sacarte este curso porque te lo mereces y lo has dado todo. Estoy súper orgulloso de ti y de todo lo que has conseguido.
+      </p>
+      
+      <p>
+        A partir de ahora toca disfrutar de tus estudios, de tu vida, de tu familia, de tus amigos y sobre todo de nuestra relación. No siento que haya podido expresar todo lo que tengo en esta carta, pero sé que la vas a valorar mucho. 
+      </p>
+      
+      <p>
+        Sigue así, mi niña, que de verdad eres increíble, y aunque tú no te lo creas, yo lo pienso desde que te conocí. Siempre te lo voy a decir: esa Alba que veo dentro de ti, voy a luchar por sacarla de su escondite y voy a hacer que disfrute como una niña. Muchas gracias por acompañarme en mi vida y espero que todo esto se pueda solucionar.
+      </p>
+    </div>
+
+    <div class="firma-block">
+      <span class="firma-nombre">Ángel</span>
+      <span class="firma-dedicatoria">Siempre a tu lado</span>
+    </div>
+  </article>
+
+  <div class="closing-quote">
+    <p class="quote-text">
+      "No necesito que todo sea perfecto.<br>
+      Solo necesito que sigamos intentándolo juntos.<br>
+      Esto es un regalo para que veas que no me voy a rendir nunca." 
+    </p>
+    <span class="quote-sub">Nuestra Promesa</span>
+  </div>
+
+  <div class="arabesque-bottom" style="margin-top: 2rem;">
+    <svg viewBox="0 0 420 40" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <g stroke="#c4813a" stroke-width="0.8" opacity="0.6">
+        <line x1="10" y1="20" x2="410" y2="20"/>
+        <polygon points="210,10 220,20 210,30 200,20" fill="#c4813a" opacity="0.4"/>
+        <polygon points="140,15 148,20 140,25 132,20" fill="none"/>
+        <polygon points="80,15 88,20 80,25 72,20" fill="none"/>
+        <polygon points="280,15 288,20 280,25 272,20" fill="none"/>
+        <polygon points="340,15 348,20 340,25 332,20" fill="none"/>
+        <path d="M10,20 Q30,8 50,20" stroke-width="0.6"/>
+        <path d="M370,20 Q390,8 410,20" stroke-width="0.6"/>
+        <path d="M50,20 Q70,32 90,20" stroke-width="0.6"/>
+        <path d="M330,20 Q350,32 370,20" stroke-width="0.6"/>
+        <circle cx="210" cy="20" r="3" fill="#c4813a" opacity="0.5"/>
+        <circle cx="140" cy="20" r="1.5" fill="#c4813a" opacity="0.4"/>
+        <circle cx="280" cy="20" r="1.5" fill="#c4813a" opacity="0.4"/>
+      </g>
+    </svg>
+  </div>
+
+</div>
+</body>
+</html>
